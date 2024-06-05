@@ -1,0 +1,128 @@
+--Q1 Create Database
+
+CREATE DATABASE Company_DENORMALIZED;
+
+
+--Q2 Create Table
+
+USE Company_DENORMALIZED;
+
+CREATE table SalesOrder (
+
+ SalesOrderNo INT NOT NULL,
+
+ Date DATE NULL,
+
+ CustomerNo INT NOT NULL,
+
+ CustomerName VARCHAR(30) NULL,
+
+ CustomerAdd VARCHAR(100) NULL,
+
+ ClearkNo INT NULL,
+
+ ItemNo INT NOT NULL,
+
+ Description TEXT NOT NULL,
+
+ Qty INT NOT NULL,
+
+ UnitPrice MONEY NULL
+
+)
+
+Select *From SalesOrder
+
+--Q3
+
+INSERT INTO [dbo].[SalesOrder] (SalesOrderNo, Date, CustomerNo, CustomerName, CustomerAdd, ClearkNo, ItemNo, Description, Qty, UnitPrice)
+
+VALUES
+
+(43661, '7/1/2005', 13531, 'Jon', 'MD', 21542, 712, 'Fruit', 4, 5.1865),
+
+(43661, '7/1/2005', 13531, 'Jon', 'MD', 21542, 743, 'Liquor', 2, 714.7043),
+
+(43661, '7/1/2005', 13531, 'Jon', 'MD', 21542, 747, 'Vegetable', 1, 714.7043),
+
+(43662, '7/2/2005', 11358, 'Christy', 'VA', 2654, 712, 'Fruit', 10, 5.1865),
+
+(43662, '7/2/2005', 11358, 'Christy', 'VA', 2654, 715, 'Bakery', 3, 28.8404),
+
+(43662, '7/2/2005', 11358, 'Christy', 'VA', 2654, 742, 'Electronics', 1, 722.5949),
+
+(43663, '7/2/2005', 6229, 'Janet', 'DC', 21145, 775, 'Electronics', 7, 2024.994),
+
+(43663, '7/2/2005', 6229, 'Janet', 'DC', 21113, 778, 'Electronics', 1, 2024.994),
+
+(43663, '7/2/2005', 6229, 'Janet', 'DC', 21113, 712, 'Fruit', 1, 5.1865),
+
+(43663, '7/2/2005', 6229, 'Janet', 'DC', 21113, 741, 'Furniture', 2, 818.7),
+
+(43664, '7/2/2005', 6377, 'Jacquelyn', 'MD', 2978, 776, 'Furniture', 2, 2024.994)
+
+
+
+Select *From SalesOrder
+
+
+
+--Q4
+
+Select SalesOrderNo, CustomerName, Description, Qty FROM [dbo].[SalesOrder]
+
+
+
+--Q5
+
+Select SalesOrderNo, CustomerName, Description, Qty FROM [dbo].[SalesOrder]
+
+WHERE CustomerNo = 6229
+
+
+
+--Q6
+
+Select SalesOrderNo, CustomerName FROM [dbo].[SalesOrder]
+
+WHERE CustomerNo = 6377 AND ItemNo >776 OR ItemNo <= 715
+
+
+
+--Q7
+
+Select *From [dbo].[SalesOrder] WHERE CustomerNo = 6229
+
+AND CustomerName = 'Janet' ORDER BY ItemNo desc
+
+Select *From [dbo].[SalesOrder] WHERE CustomerNo = 6229
+
+AND CustomerName = 'Janet' ORDER BY ItemNo asc
+
+
+
+--Q8
+
+Select *From [dbo].[SalesOrder] Order by CustomerNo asc
+
+Select *From [dbo].[SalesOrder] Order by CustomerNo desc
+
+
+
+--Q9
+
+Select * From [dbo].[SalesOrder]
+
+WHERE CustomerAdd = 'MD'
+
+AND Qty = '2'
+
+
+
+--Q10
+
+Select * From [dbo].[SalesOrder]
+
+Where Qty = '2'
+
+ORDER BY CustomerNo desc 
