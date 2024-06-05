@@ -1,2 +1,1 @@
-# SqlProjects
-SQL Projects
+Here are some SQL Projects I have done
